@@ -21,7 +21,9 @@ public class Collezione {
 		return false;
 	}
 	
-	
+	public void cercaTitolo(String titolo) {
+		
+	}
 	
 	
 }
