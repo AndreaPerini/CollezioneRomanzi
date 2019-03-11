@@ -7,3 +7,4 @@ public class Main {
 	}
 
 }
+//nel main mettere set tipo cartaceo o digitale in automatico

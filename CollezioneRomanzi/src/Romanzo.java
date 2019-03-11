@@ -1,11 +1,10 @@
-import java.time.LocalDate;
-
 public class Romanzo {
 
 	private String titolo;
 	private String autore;
-	private LocalDate annoPubblicazione;
+	private int annoPubblicazione;
 	private String editore;
+	private String tipo;
 	
 	public Romanzo() {
 	}
@@ -26,11 +25,11 @@ public class Romanzo {
 		this.autore = autore;
 	}
 
-	public LocalDate getAnnoPubblicazione() {
+	public int getAnnoPubblicazione() {
 		return annoPubblicazione;
 	}
 
-	public void setAnnoPubblicazione(LocalDate annoPubblicazione) {
+	public void setAnnoPubblicazione(int annoPubblicazione) {
 		this.annoPubblicazione = annoPubblicazione;
 	}
 
@@ -40,6 +39,14 @@ public class Romanzo {
 
 	public void setEditore(String editore) {
 		this.editore = editore;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	
