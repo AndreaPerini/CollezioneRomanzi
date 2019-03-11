@@ -72,11 +72,35 @@ public class Collezione {
 		}
 		do {
 			System.out.println(
-					"Seleziona cosa vuoi filtrare: titolo, autore, anno, editore, tipo\nsolo per i digitali puoi selezionare anche: formato, dimensione, supporto\nsolo per i cartacei puoi selezionare: copertina, stato, pagine");
+					"Seleziona cosa vuoi filtrare: titolo, autore, anno, editore, tipo\nsolo per i digitali puoi selezionare anche: formato, dimensione, supporto\nsolo per i cartacei puoi selezionare: copertina, stato, pagine\nPer stampare l'elenco filtrato scrivi fine");
 			switch (sc.next()) {
-			// mettere i case
+			case "titolo":
+				break;
+			case "autore":
+				break;
+			case "anno":
+				break;
+			case "editore":
+				break;
+			case "tipo":
+				break;
+			case "formato":
+				break;
+			case "dimensione":
+				break;
+			case "supporto":
+				break;
+			case "copertina":
+				break;
+			case "stato":
+				break;
+			case "pagine":
+				break;
+			case "fine":
+				break;
+			default:
+				System.out.println("Inserimento non valido");
 			}
-
 		} while (fine);
 	}
 
