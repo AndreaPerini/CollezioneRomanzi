@@ -4,7 +4,6 @@ public class Romanzo {
 	private String autore;
 	private int annoPubblicazione;
 	private String editore;
-	private String tipo;
 	
 	public Romanzo() {
 	}
@@ -40,18 +39,6 @@ public class Romanzo {
 	public void setEditore(String editore) {
 		this.editore = editore;
 	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	
-	
-	
-	
 	
 	
 	

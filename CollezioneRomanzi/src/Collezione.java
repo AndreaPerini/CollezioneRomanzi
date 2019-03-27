@@ -26,8 +26,7 @@ public class Collezione {
 			if (collezione.get(i).getTitolo().equalsIgnoreCase(titolo)) {
 				System.out.println("Il romanzo " + collezione.get(i).getTitolo() + ", l'autore è "
 						+ collezione.get(i).getAutore() + ", è stato pubblicato nel "
-						+ collezione.get(i).getAnnoPubblicazione() + ", l'editore è " + collezione.get(i).getEditore()
-						+ "ed è " + collezione.get(i).getTipo());
+						+ collezione.get(i).getAnnoPubblicazione() + ", l'editore è " + collezione.get(i).getEditore());
 			}
 		}
 		System.out.println("Romanzo non torvato");
@@ -63,45 +62,45 @@ public class Collezione {
 		sc.close();
 	}
 
-	public void filtraCollezione() {
-		boolean fine = false;
-		List<Romanzo> filtro = new ArrayList<>();
-		Scanner sc = new Scanner(System.in);
-		for (int i = 0; i < collezione.size(); i++) {
-			filtro.add(collezione.get(i));
-		}
-		do {
-			System.out.println(
-					"Seleziona cosa vuoi filtrare: titolo, autore, anno, editore, tipo\nsolo per i digitali puoi selezionare anche: formato, dimensione, supporto\nsolo per i cartacei puoi selezionare: copertina, stato, pagine\nPer stampare l'elenco filtrato scrivi fine");
-			switch (sc.next()) {
-			case "titolo":
-				break;
-			case "autore":
-				break;
-			case "anno":
-				break;
-			case "editore":
-				break;
-			case "tipo":
-				break;
-			case "formato":
-				break;
-			case "dimensione":
-				break;
-			case "supporto":
-				break;
-			case "copertina":
-				break;
-			case "stato":
-				break;
-			case "pagine":
-				break;
-			case "fine":
-				break;
-			default:
-				System.out.println("Inserimento non valido");
-			}
-		} while (fine);
-	}
+//	public void filtraCollezione() {
+//		boolean fine = false;
+//		List<Romanzo> filtro = new ArrayList<>();
+//		Scanner sc = new Scanner(System.in);
+//		for (int i = 0; i < collezione.size(); i++) {
+//			filtro.add(collezione.get(i));
+//		}
+//		do {
+//			System.out.println(
+//					"Seleziona cosa vuoi filtrare: titolo, autore, anno, editore, tipo\nsolo per i digitali puoi selezionare anche: formato, dimensione, supporto\nsolo per i cartacei puoi selezionare: copertina, stato, pagine\nPer stampare l'elenco filtrato scrivi fine");
+//			switch (sc.next()) {
+//			case "titolo":
+//				break;
+//			case "autore":
+//				break;
+//			case "anno":
+//				break;
+//			case "editore":
+//				break;
+//			case "tipo":
+//				break;
+//			case "formato":
+//				break;
+//			case "dimensione":
+//				break;
+//			case "supporto":
+//				break;
+//			case "copertina":
+//				break;
+//			case "stato":
+//				break;
+//			case "pagine":
+//				break;
+//			case "fine":
+//				break;
+//			default:
+//				System.out.println("Inserimento non valido");
+//			}
+//		} while (fine);
+//	}
 
 }
