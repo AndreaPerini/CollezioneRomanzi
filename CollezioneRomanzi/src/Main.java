@@ -19,20 +19,29 @@ public class Main {
 				boolean scelta = false;
 				System.out.println("Vuoi aggiungere un romanzo cartaceo?");
 				if (sc.next().equalsIgnoreCase("si")) {
+					sc.nextLine();
 					Cartaceo ca = new Cartaceo();
 					System.out.println("Inserisci il titolo");
 					ca.setTitolo(sc.next());
+					sc.nextLine();
+					System.out.println("Inserisci l'autore");
+					ca.setAutore(sc.next());
+					sc.nextLine();
 					System.out.println("Inserisci l'anno di pubblicazione");
 					ca.setAnnoPubblicazione(sc.nextInt());
+					sc.nextLine();
 					System.out.println("Inserisci l'editore");
 					ca.setEditore(sc.next());
+					sc.nextLine();
 					System.out.println("La copertina è rigida o molle?");
 					do {
-						if (sc.next().equalsIgnoreCase("molle")) {
+						String cop = sc.next();
+						sc.nextLine();
+						if (cop.equalsIgnoreCase("molle")) {
 							ca.setCopertina(Cartaceo.Copertina.MOLLE);
 							scelta = true;
 						} else {
-							if (sc.next().equalsIgnoreCase("rigida")) {
+							if (cop.equalsIgnoreCase("rigida")) {
 								ca.setCopertina(Cartaceo.Copertina.RIGIDA);
 								scelta = true;
 							} else {
@@ -42,32 +51,42 @@ public class Main {
 					} while (!scelta);
 					System.out.println("Inserisci lo stato di conservazione");
 					ca.setStatoConservazione(sc.next());
+					sc.nextLine();
 					System.out.println("Inserisci il numero delle pagine");
 					ca.setNumeroPagine(sc.nextInt());
+					sc.nextLine();
 					c.aggiungiRomanzo(ca);
 				} else {
 					Digitale d = new Digitale();
 					System.out.println("Inserisci il titolo");
 					d.setTitolo(sc.next());
+					sc.nextLine();
+					System.out.println("Inserisci l'autore");
+					d.setAutore(sc.next());
+					sc.nextLine();
 					System.out.println("Inserisci l'anno di pubblicazione");
 					d.setAnnoPubblicazione(sc.nextInt());
+					sc.nextLine();
 					System.out.println("Inserisci l'editore");
 					d.setEditore(sc.next());
+					sc.nextLine();
 					System.out.println("Seleziona il formato tra epub, modi, pdf e azw");
 					do {
-						if (sc.next().equalsIgnoreCase("epub")) {
+						String form = sc.next();
+						sc.nextLine();
+						if (form.equalsIgnoreCase("epub")) {
 							d.setFormato(Digitale.Formato.epub);
 							scelta = true;
 						} else {
-							if (sc.next().equalsIgnoreCase("modi")) {
+							if (form.equalsIgnoreCase("modi")) {
 								d.setFormato(Digitale.Formato.modi);
 								scelta = true;
 							} else {
-								if (sc.next().equalsIgnoreCase("pdf")) {
+								if (form.equalsIgnoreCase("pdf")) {
 									d.setFormato(Digitale.Formato.pdf);
 									scelta = true;
 								} else {
-									if (sc.next().equalsIgnoreCase("azw")) {
+									if (form.equalsIgnoreCase("azw")) {
 										d.setFormato(Digitale.Formato.azw);
 										scelta = true;
 									} else {
@@ -80,14 +99,17 @@ public class Main {
 					} while (!scelta);
 					System.out.println("Inserisci la dimensione in megabyte");
 					d.setDimensione(sc.nextInt());
+					sc.nextLine();
 					System.out.println("Inserisci il supporto tra cdrom e storage");
 					scelta = false;
 					do {
-						if (sc.next().equalsIgnoreCase("cdrom")) {
+						String sup = sc.next();
+						sc.nextLine();
+						if (sup.equalsIgnoreCase("cdrom")) {
 							d.setSupporto(Digitale.Supporto.cdrom);
 							scelta = true;
 						} else {
-							if (sc.next().equalsIgnoreCase("storage")) {
+							if (sup.equalsIgnoreCase("storage")) {
 								d.setSupporto(Digitale.Supporto.storage);
 								scelta = true;
 							} else {
@@ -119,7 +141,7 @@ public class Main {
 			default:
 				System.out.println("Inserimento errato");
 			}
-		} while (fine);
+		} while (!fine);
 		sc.close();
 	}
 

@@ -9,12 +9,14 @@ public class Collezione {
 
 	public void aggiungiRomanzo(Romanzo r) {
 		collezione.add(r);
+		System.out.println("Romanzo aggiunto!");
 	}
 
 	public boolean rimuoviRomanzo(String nome) {
 		for (int i = 0; i < collezione.size(); i++) {
 			if (collezione.get(i).getTitolo().equalsIgnoreCase(nome)) {
 				collezione.remove(i);
+				System.out.println("Romanzo eliminato!");
 				return true;
 			}
 		}
