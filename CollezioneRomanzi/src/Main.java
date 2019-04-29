@@ -5,6 +5,8 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		boolean fine = false;
+		boolean giusto = false;
+		String sce;
 		Collezione c = new Collezione();
 		do {
 			System.out.println("Seleziona l'opzione da eseguire");
@@ -18,17 +20,31 @@ public class Main {
 			case 1:
 				boolean scelta = false;
 				System.out.println("Vuoi aggiungere un romanzo cartaceo?");
-				if (sc.next().equalsIgnoreCase("si")) {
+				sce = sc.next();
+				if (sce.equalsIgnoreCase("si")) {
 					sc.nextLine();
 					Cartaceo ca = new Cartaceo();
 					System.out.println("Inserisci il titolo");
+					// try {
 					ca.setTitolo(sc.next());
+					// }catch(Exception e) {
+					// System.out.println("Inserisci una stringa");
+					// }
 					sc.nextLine();
 					System.out.println("Inserisci l'autore");
 					ca.setAutore(sc.next());
 					sc.nextLine();
 					System.out.println("Inserisci l'anno di pubblicazione");
-					ca.setAnnoPubblicazione(sc.nextInt());
+					do {
+						try {
+							sc.nextLine();
+							ca.setAnnoPubblicazione(sc.nextInt());
+							giusto = true;
+						} catch (InputMismatchException e) {
+							System.out.println("Reinserisci solo numeri");
+						}
+					} while (!giusto);
+					giusto = false;
 					sc.nextLine();
 					System.out.println("Inserisci l'editore");
 					ca.setEditore(sc.next());
@@ -53,71 +69,98 @@ public class Main {
 					ca.setStatoConservazione(sc.next());
 					sc.nextLine();
 					System.out.println("Inserisci il numero delle pagine");
-					ca.setNumeroPagine(sc.nextInt());
+					do {
+						try {
+							ca.setNumeroPagine(sc.nextInt());
+							giusto = true;
+						} catch (InputMismatchException e) {
+							System.out.println("Reinserisci solo numeri");
+						}
+					} while (!giusto);
+					giusto = false;
 					sc.nextLine();
 					c.aggiungiRomanzo(ca);
 				} else {
-					Digitale d = new Digitale();
-					System.out.println("Inserisci il titolo");
-					d.setTitolo(sc.next());
-					sc.nextLine();
-					System.out.println("Inserisci l'autore");
-					d.setAutore(sc.next());
-					sc.nextLine();
-					System.out.println("Inserisci l'anno di pubblicazione");
-					d.setAnnoPubblicazione(sc.nextInt());
-					sc.nextLine();
-					System.out.println("Inserisci l'editore");
-					d.setEditore(sc.next());
-					sc.nextLine();
-					System.out.println("Seleziona il formato tra epub, modi, pdf e azw");
-					do {
-						String form = sc.next();
+					if (sce.equalsIgnoreCase("no")) {
+						Digitale d = new Digitale();
+						System.out.println("Inserisci il titolo");
+						d.setTitolo(sc.next());
 						sc.nextLine();
-						if (form.equalsIgnoreCase("epub")) {
-							d.setFormato(Digitale.Formato.epub);
-							scelta = true;
-						} else {
-							if (form.equalsIgnoreCase("modi")) {
-								d.setFormato(Digitale.Formato.modi);
+						System.out.println("Inserisci l'autore");
+						d.setAutore(sc.next());
+						sc.nextLine();
+						System.out.println("Inserisci l'anno di pubblicazione");
+						do {
+							try {
+								d.setAnnoPubblicazione(sc.nextInt());
+								giusto = true;
+							} catch (InputMismatchException e) {
+								System.out.println("Reinserisci solo numeri");
+							}
+						} while (!giusto);
+						giusto = false;
+						sc.nextLine();
+						System.out.println("Inserisci l'editore");
+						d.setEditore(sc.next());
+						sc.nextLine();
+						System.out.println("Seleziona il formato tra epub, modi, pdf e azw");
+						do {
+							String form = sc.next();
+							sc.nextLine();
+							if (form.equalsIgnoreCase("epub")) {
+								d.setFormato(Digitale.Formato.epub);
 								scelta = true;
 							} else {
-								if (form.equalsIgnoreCase("pdf")) {
-									d.setFormato(Digitale.Formato.pdf);
+								if (form.equalsIgnoreCase("modi")) {
+									d.setFormato(Digitale.Formato.modi);
 									scelta = true;
 								} else {
-									if (form.equalsIgnoreCase("azw")) {
-										d.setFormato(Digitale.Formato.azw);
+									if (form.equalsIgnoreCase("pdf")) {
+										d.setFormato(Digitale.Formato.pdf);
 										scelta = true;
 									} else {
-										System.out.println("Inserimento errato");
+										if (form.equalsIgnoreCase("azw")) {
+											d.setFormato(Digitale.Formato.azw);
+											scelta = true;
+										} else {
+											System.out.println("Inserimento errato");
+										}
 									}
 								}
-							}
 
-						}
-					} while (!scelta);
-					System.out.println("Inserisci la dimensione in megabyte");
-					d.setDimensione(sc.nextInt());
-					sc.nextLine();
-					System.out.println("Inserisci il supporto tra cdrom e storage");
-					scelta = false;
-					do {
-						String sup = sc.next();
+							}
+						} while (!scelta);
+						System.out.println("Inserisci la dimensione in megabyte");
+						do {
+							try {
+								d.setDimensione(sc.nextInt());
+								giusto = true;
+							} catch (InputMismatchException e) {
+								System.out.println("Reinserisci solo numeri");
+							}
+						} while (!giusto);
+						giusto = false;
 						sc.nextLine();
-						if (sup.equalsIgnoreCase("cdrom")) {
-							d.setSupporto(Digitale.Supporto.cdrom);
-							scelta = true;
-						} else {
-							if (sup.equalsIgnoreCase("storage")) {
-								d.setSupporto(Digitale.Supporto.storage);
+						System.out.println("Inserisci il supporto tra cdrom e storage");
+						scelta = false;
+						do {
+							String sup = sc.next();
+							sc.nextLine();
+							if (sup.equalsIgnoreCase("cdrom")) {
+								d.setSupporto(Digitale.Supporto.cdrom);
 								scelta = true;
 							} else {
-								System.out.println("Inserimento errato");
+								if (sup.equalsIgnoreCase("storage")) {
+									d.setSupporto(Digitale.Supporto.storage);
+									scelta = true;
+								} else {
+									System.out.println("Inserimento errato");
+								}
 							}
-						}
-					} while (!scelta);
-					c.aggiungiRomanzo(d);
+						} while (!scelta);
+						c.aggiungiRomanzo(d);
+					} else
+						System.out.println("Inserimento errato");
 				}
 				break;
 			case 2:

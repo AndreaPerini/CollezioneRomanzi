@@ -23,45 +23,52 @@ public class Collezione {
 		return false;
 	}
 
-	public void cercaTitolo(String titolo) {
+	public boolean cercaTitolo(String titolo) {
 		for (int i = 0; i < collezione.size(); i++) {
 			if (collezione.get(i).getTitolo().equalsIgnoreCase(titolo)) {
 				System.out.println("Il romanzo " + collezione.get(i).getTitolo() + ", l'autore è "
 						+ collezione.get(i).getAutore() + ", è stato pubblicato nel "
 						+ collezione.get(i).getAnnoPubblicazione() + ", l'editore è " + collezione.get(i).getEditore());
+				return true;
 			}
 		}
 		System.out.println("Romanzo non torvato");
+		return false;
 	}
 
-	public void ricercaAutore(String autore) {
+	public boolean ricercaAutore(String autore) {
 		for (int i = 0; i < collezione.size(); i++) {
 			if (collezione.get(i).getAutore().equalsIgnoreCase(autore)) {
 				System.out.println(collezione.get(i).getTitolo());
+				return true;
 			}
 		}
-		System.out.println("Nessun romanzo torvato");
+		System.out.println("Nessun romanzo trovato");
+		return false;
 	}
 
-	public void pubblicatiData(int anno) {
+	public boolean pubblicatiData(int anno) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Vuoi cercare prima della data inserita?");
 		if (sc.next().equalsIgnoreCase("no")) {
 			for (int i = 0; i < collezione.size(); i++) {
 				if (collezione.get(i).getAnnoPubblicazione() > anno) {
 					System.out.println(collezione.get(i).getTitolo());
+					return true;
 				}
 			}
 			System.out.println("Nessun romanzo trovato");
+			return false;
 		} else {
 			for (int i = 0; i < collezione.size(); i++) {
 				if (collezione.get(i).getAnnoPubblicazione() < anno) {
 					System.out.println(collezione.get(i).getTitolo());
+					return true;
 				}
 			}
 			System.out.println("Nessun romanzo trovato");
+			return false;
 		}
-		sc.close();
 	}
 
 //	public void filtraCollezione() {
