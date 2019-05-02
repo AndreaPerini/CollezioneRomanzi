@@ -3,6 +3,7 @@ import java.util.*;
 public class Collezione {
 
 	private List<Romanzo> collezione = new ArrayList<>();
+	private Scanner sc;
 
 	public Collezione() {
 	}
@@ -48,7 +49,7 @@ public class Collezione {
 	}
 
 	public boolean pubblicatiData(int anno) {
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		System.out.println("Vuoi cercare prima della data inserita?");
 		if (sc.next().equalsIgnoreCase("no")) {
 			for (int i = 0; i < collezione.size(); i++) {
@@ -71,45 +72,182 @@ public class Collezione {
 		}
 	}
 
-//	public void filtraCollezione() {
-//		boolean fine = false;
-//		List<Romanzo> filtro = new ArrayList<>();
-//		Scanner sc = new Scanner(System.in);
-//		for (int i = 0; i < collezione.size(); i++) {
-//			filtro.add(collezione.get(i));
-//		}
-//		do {
-//			System.out.println(
-//					"Seleziona cosa vuoi filtrare: titolo, autore, anno, editore, tipo\nsolo per i digitali puoi selezionare anche: formato, dimensione, supporto\nsolo per i cartacei puoi selezionare: copertina, stato, pagine\nPer stampare l'elenco filtrato scrivi fine");
-//			switch (sc.next()) {
-//			case "titolo":
-//				break;
-//			case "autore":
-//				break;
-//			case "anno":
-//				break;
-//			case "editore":
-//				break;
-//			case "tipo":
-//				break;
-//			case "formato":
-//				break;
-//			case "dimensione":
-//				break;
-//			case "supporto":
-//				break;
-//			case "copertina":
-//				break;
-//			case "stato":
-//				break;
-//			case "pagine":
-//				break;
-//			case "fine":
-//				break;
-//			default:
-//				System.out.println("Inserimento non valido");
-//			}
-//		} while (fine);
-//	}
+	public void filtraCollezione() {
+		boolean fine = false;
+		List<Romanzo> filtro = new ArrayList<>();
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < collezione.size(); i++) {
+			filtro.add(collezione.get(i));
+		}
+		String stringa;
+		int intero;
+		do {
+			System.out.println(
+					"Vuoi filtrare per autore, per anno di pubblicazione, per editore, per cartaceo o per digitale?");
+			switch (sc.next()) {
+			case "autore":
+				System.out.println("Inserisci l'autore da filtrare");
+				stringa = sc.next();
+				for (int i = 0; i < filtro.size(); i++) {
+					if (filtro.get(i).getAutore().equalsIgnoreCase(stringa))
+						System.out.println(filtro.get(i).getTitolo());
+				}
+				break;
+			case "anno di pubblicazione":
+				System.out.println("Inserisci l'anno da filtrare");
+				intero = sc.nextInt();
+				for (int i = 0; i < filtro.size(); i++) {
+					if (filtro.get(i).getAnnoPubblicazione() == intero)
+						System.out.println(filtro.get(i).getTitolo());
+				}
+				break;
+			case "editore":
+				System.out.println("Inserisci l'editore da filtrare");
+				stringa = sc.next();
+				for (int i = 0; i < filtro.size(); i++) {
+					if (filtro.get(i).getEditore().equalsIgnoreCase(stringa))
+						System.out.println(filtro.get(i).getTitolo());
+				}
+				break;
+			case "cartaceo":
+				System.out.println(
+						"Vuoi filtrare per autore, per anno di pubblicazione, per editore, per cartaceo, per copertina, per stato di conservazione o per numero pagine?");
+				switch (sc.next()) {
+				case "autore":
+					System.out.println("Inserisci l'autore da filtrare");
+					stringa = sc.next();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Cartaceo)
+							if (filtro.get(i).getAutore().equalsIgnoreCase(stringa))
+								System.out.println(filtro.get(i).getTitolo());
+					}
+					break;
+				case "anno di pubblicazione":
+					System.out.println("Inserisci l'anno da filtrare");
+					intero = sc.nextInt();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Cartaceo)
+							if (filtro.get(i).getAnnoPubblicazione() == intero)
+								System.out.println(filtro.get(i).getTitolo());
+					}
+					break;
+				case "editore":
+					System.out.println("Inserisci l'editore da filtrare");
+					stringa = sc.next();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Cartaceo)
+							if (filtro.get(i).getEditore().equalsIgnoreCase(stringa))
+								System.out.println(filtro.get(i).getTitolo());
+					}
+					break;
+				case "copertina":
+//					System.out.println("Inserisci la copertina da filtrare tra rigida e molle");
+//					stringa = sc.next();
+//					for (int i = 0; i < filtro.size(); i++) {
+//						if (filtro.get(i) instanceof Cartaceo) {
+//							if(stringa.equalsIgnoreCase("rigida")) {
+//								//come comparare degli enum
+//									System.out.println(filtro.get(i).getTitolo());
+//							}
+//							if(stringa.equalsIgnoreCase("molle")) {
+//								
+//							}
+//						}
+//					}
+					break;
+				case "stato di conservazione":
+					// System.out.println("Inserisci l'editore da filtrare");
+					// stringa = sc.next();
+					// for (int i = 0; i < filtro.size(); i++) {
+					// if (filtro.get(i) instanceof Cartaceo) {
+					// if ((Cartaceo) filtro.get(i).getStatoConservazione.equalsIgnoreCase(stringa))
+					// System.out.println(filtro.get(i).getTitolo());
+					// }
+					// }
+					break;
+				case "numero pagine":
+					// System.out.println("Inserisci il numero di pagine da filtrare");
+					// intero = sc.nextInt();
+					// for (int i = 0; i < filtro.size(); i++) {
+					// if (filtro.get(i) instanceof Cartaceo) {
+					// if ((Cartaceo) filtro.get(i).getNumeroPagine() == intero)
+					// System.out.println(filtro.get(i).getTitolo());
+					// }
+					// }
+					break;
+				case "cartaceo":
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Cartaceo)
+							System.out.println(filtro.get(i).getTitolo());
+					}
+					break;
+				}
+				break;
+			case "digitali":
+				System.out.println(
+						"Vuoi filtrare per autore, per anno di pubblicazione, per editore, per digitale, per formato, per dimensione o per supporto?");
+				switch (sc.next()) {
+				case "autore":
+					System.out.println("Inserisci l'autore da filtrare");
+					stringa = sc.next();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Digitale) {
+							if (filtro.get(i).getAutore().equalsIgnoreCase(stringa))
+								System.out.println(filtro.get(i).getTitolo());
+						}
+					}
+					break;
+				case "anno di pubblicazione":
+					System.out.println("Inserisci l'anno da filtrare");
+					intero = sc.nextInt();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Digitale) {
+							if (filtro.get(i).getAnnoPubblicazione() == intero)
+								System.out.println(filtro.get(i).getTitolo());
+						}
+					}
+					break;
+				case "editore":
+					System.out.println("Inserisci l'editore da filtrare");
+					stringa = sc.next();
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Digitale) {
+							if (filtro.get(i).getEditore().equalsIgnoreCase(stringa))
+								System.out.println(filtro.get(i).getTitolo());
+						}
+					}
+					break;
+				case "digitale":
+					for (int i = 0; i < filtro.size(); i++) {
+						if (filtro.get(i) instanceof Digitale)
+							System.out.println(filtro.get(i).getTitolo());
+					}
+					break;
+				case "formato":
+
+					break;
+				case "dimensione":
+//					System.out.println("Inserisci il numero di pagine da filtrare");
+//					intero = sc.nextInt();
+//					for (int i = 0; i < filtro.size(); i++) {
+//						if (filtro.get(i) instanceof Digitale) {
+//							if ((Digitale) filtro.get(i).getDimensione() == intero)
+//								System.out.println(filtro.get(i).getTitolo());
+//						}
+//					}
+					break;
+				case "supporto":
+
+					break;
+				}
+				break;
+			default:
+				System.out.println("Vuoi terminare?");
+				if (sc.next().equalsIgnoreCase("si"))
+					fine = true;
+			}
+		} while (!fine);
+		sc.close();
+	}
 
 }

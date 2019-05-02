@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Main {
 
@@ -8,6 +10,56 @@ public class Main {
 		boolean giusto = false;
 		String sce;
 		Collezione c = new Collezione();
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("C:\\Andrea\\Scuola\\File\\Romanzi.txt"));
+			String s = new String();
+			String[] riga;
+			Cartaceo cartaceo = new Cartaceo();
+			Digitale digitale = new Digitale();
+			do {
+				s = in.readLine();
+				if (s != null) {
+					riga = s.split("\\|");
+					if (riga[0].equalsIgnoreCase("cartaceo")) {
+						cartaceo.setTitolo(riga[1]);
+						cartaceo.setAutore(riga[2]);
+						cartaceo.setAnnoPubblicazione(Integer.parseInt(riga[3]));
+						cartaceo.setEditore(riga[4]);
+						if (riga[5].equalsIgnoreCase("rigida"))
+							cartaceo.setCopertina(Cartaceo.Copertina.RIGIDA);
+						if (riga[5].equalsIgnoreCase("molle"))
+							cartaceo.setCopertina(Cartaceo.Copertina.MOLLE);
+						cartaceo.setStatoConservazione(riga[6]);
+						cartaceo.setNumeroPagine(Integer.parseInt(riga[7]));
+						c.aggiungiRomanzo(cartaceo);
+					} else {
+						digitale.setTitolo(riga[1]);
+						digitale.setAutore(riga[2]);
+						digitale.setAnnoPubblicazione(Integer.parseInt(riga[3]));
+						digitale.setEditore(riga[4]);
+						if (riga[5].equalsIgnoreCase("epub"))
+							digitale.setFormato(Digitale.Formato.epub);
+						if (riga[5].equalsIgnoreCase("modi"))
+							digitale.setFormato(Digitale.Formato.modi);
+						if (riga[5].equalsIgnoreCase("pdf"))
+							digitale.setFormato(Digitale.Formato.pdf);
+						if (riga[5].equalsIgnoreCase("azw"))
+							digitale.setFormato(Digitale.Formato.azw);
+						digitale.setDimensione(Integer.parseInt(riga[6]));
+						if (riga[7].equalsIgnoreCase("cdrom"))
+							digitale.setSupporto(Digitale.Supporto.cdrom);
+						if (riga[7].equalsIgnoreCase("storage"))
+							digitale.setSupporto(Digitale.Supporto.storage);
+						c.aggiungiRomanzo(digitale);
+					}
+				}
+			} while (s != null);
+
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		do {
 			System.out.println("Seleziona l'opzione da eseguire");
 			System.out.println(
@@ -25,11 +77,7 @@ public class Main {
 					sc.nextLine();
 					Cartaceo ca = new Cartaceo();
 					System.out.println("Inserisci il titolo");
-					// try {
 					ca.setTitolo(sc.next());
-					// }catch(Exception e) {
-					// System.out.println("Inserisci una stringa");
-					// }
 					sc.nextLine();
 					System.out.println("Inserisci l'autore");
 					ca.setAutore(sc.next());
